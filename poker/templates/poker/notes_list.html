@@ -1,0 +1,42 @@
+{% extends 'poker/base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1>Session Notes</h1>
+    
+    <!-- Search Form -->
+    <form method="get" action="{% url 'poker:session_notes_list' %}" class="mb-4">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search notes..." class="form-control mb-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    
+    <!-- Notes Table -->
+    <table class="table table-bordered mt-3 bg-light">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Notes</th>
+                <th>Takeaway</th>
+                <th>Topic</th>
+                <th>Session</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for note in notes %}
+                <tr>
+                    <td>{{ note.pokersession.date|date:"M d, Y" }}</td>
+                    <td>{{ note.notes|default:"No notes" }}</td>
+                    <td>{{ note.takeaway|default:"No takeaway" }}</td>
+                    <td>{{ note.keywords }}</td>
+                    <td><a href="{% url 'poker:session_detail' note.pokersession.id %}">View Session</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No notes found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

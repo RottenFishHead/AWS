@@ -1,0 +1,25 @@
+{% extends 'poker/base.html' %}
+
+{% block content %}
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+  <!-- Left Column: Form -->
+  <div style="width: 45%;">
+    <h2>Add a Poker Session</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Save Session</button>
+    </form>
+  </div>
+
+  <!-- Right Column: Notes -->
+  <div style="width: 45%;">
+    <h2>Notes</h2>
+    {% for note in notes %}
+      <div style="margin-bottom: 10px;">
+        <p>{{ note.takeaway }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

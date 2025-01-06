@@ -1,0 +1,11 @@
+{% extends "poker/base.html" %}
+{% block content %}
+    <h2>Edit Note for Session: {{ poker_session.id }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update Note</button>
+        <a href="{% url 'poker:session_detail' poker_session.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

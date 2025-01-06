@@ -1,0 +1,8 @@
+{% block content %}
+
+<h3 class='fs-5 fst-italic m-4'>Current Hourly Rate Overall: ${{ overall_hourly_rate|floatformat:2 }} ({{ overall_hours }} hours)</span></h3>
+
+{{ chart|safe }}
+
+
+{% endblock content %}

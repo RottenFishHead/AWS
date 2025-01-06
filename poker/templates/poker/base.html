@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" rel="text/css" href="{% static 'css/bootstrap.css' %}">
+    <!-- Custom Style -->
+ {% comment %} <style>
+            body {
+                color: white;
+                border-style: groove;
+                background: #296c87;
+                border-style: outset;
+            }
+</style> {% endcomment %}
+</head>
+<body> 
+    <nav class="navbar navbar-expand-lg navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          
+          <a class="nav-link active text-light" aria-current="page" href="{% url 'poker:home' %}">Poker Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Session Data
+                  </a>        
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'poker:all_sessions' %}">All Sessions</a></li>
+                    <li><a class="dropdown-item" href="{% url 'poker:session_list_by_month' %}">Sessions by Month</a></li>
+                    <li><a class="dropdown-item" href="{% url 'poker:session_notes_list' %}">Session Notes</a></li>
+                    <li><a class="dropdown-item" href="{% url 'poker:add_session' %}">Add Session</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Charts
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="{% url 'poker:overall_chart' %}">Individual Sessions Chart</a></li>
+                  <li><a class="dropdown-item" href="{% url 'poker:all_sessions' %}">Total Sessions List</a></li>
+                  
+                  <li><a class="dropdown-item" href="{% url 'poker:chart_25' %}">2/5 Chart</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Hands
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="{% url 'poker:session_hands' %}">Hands List</a></li>
+                  
+                </ul>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Session Notes
+                  </a>        
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'poker:session_notes_list' %}">All Notes</a></li>
+                </ul>
+          </div>
+          <div class="navbar-nav ms-auto pl-5 ml-6">
+            {% if user.is_authenticated %}
+                Hi {{ user.username }}!
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit">Log Out</button>
+                </form>
+                {% else %}
+                <p>You are not logged in</p>
+                <a href="{% url 'login' %}">Log In</a>
+                {% endif %}
+        </div>
+        </div>
+      </nav>
+<div class="container mt-4">
+  <h2><a href="{% url 'poker:add_session' %}" class="btn btn-primary m-3">
+    Add Session
+  </a> <a href="{% url 'poker:all_sessions' %}" class="btn btn-warning m-3">
+    All Sessions
+  </a> <a href="{% url 'poker:session_list_by_month' %}" class="btn btn-danger m-3">
+    Sessions by Month
+  </a></h2>
+
+
+
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>
