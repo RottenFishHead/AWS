@@ -19,7 +19,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 #CSRF_TRUSTED_ORIGINS = ['']
 
@@ -85,15 +85,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
 
-        'NAME': env('NAME'),
+        'NAME': 'rotten_db',
 
-        'USER': env('USER'),
+        'USER': 'rottenfishdb',
 
-        'PASSWORD': env('PASSWORD'),
+        'PASSWORD': 'Efromm1967!',
 
-        'HOST': env('HOST'),
+        'HOST': 'database-1.c7gqiwe6kdpj.us-east-2.rds.amazonaws.com',
 
-        'PORT': env('PORT'),
+        'PORT': '5432',
 
     }
 }
