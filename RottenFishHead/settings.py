@@ -1,10 +1,5 @@
 from pathlib import Path
-import environ
 
-
-env = environ.Env()
-
-environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-^-std*19ak9!*s1v!-bgr!yet_7^-=16#e&&hle3^fma6r@4#d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,30 +68,30 @@ WSGI_APPLICATION = 'RottenFishHead.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-
-        'NAME': 'rotten_db',
-
-        'USER': 'rottenfishdb',
-
-        'PASSWORD': 'Efromm1967!',
-
-        'HOST': 'database-1.c7gqiwe6kdpj.us-east-2.rds.amazonaws.com',
-
-        'PORT': '5432',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+
+#         'NAME': 'rotten_db',
+
+#         'USER': 'rottenfishdb',
+
+#         'PASSWORD': 'Efromm1967!',
+
+#         'HOST': 'database-1.c7gqiwe6kdpj.us-east-2.rds.amazonaws.com',
+
+#         'PORT': '5432',
+
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -145,9 +140,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #Email through Amazon SES Configuration
-
-EMAIL_BACKEND = 'django_ses.SESBackend'
-
-AWS_SES_REGION_NAME = 'us-east-2'
-
-AWS_SES_REGION_ENDPOINT = 'email.us-east-2.amazonaws.com'
